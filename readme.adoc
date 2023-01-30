@@ -1,0 +1,11 @@
+= Yandex Ranking Factors
+
+A few scrappy Deno scripts - mostly generated with GitHub Copilot - to transform the
+leaked search ranking factors from Yandex from C++ Slice into JSON
+
+Translations from Russian to English are made using DeepL API, expecting
+`DEEPL_AUTH_KEY` env variable
+
+For the generated results, see `./out`
+
+For an interactive, browsable catalog of all factors, check out https://index.garden/yandex-ranking-factors
