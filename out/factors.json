@@ -18,7 +18,8 @@
     ],
     "responsibles": [
       "aavdonkin"
-    ]
+    ],
+    "description_en": "Page rank. The factor is remapped."
   },
   {
     "index": 1,

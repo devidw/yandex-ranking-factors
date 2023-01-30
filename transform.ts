@@ -142,9 +142,7 @@ factors.forEach((factor) => {
   })
 
   // add description_en from en{index: description}
-  if (factor.index) {
-    factor.description_en = en[factor.index]
-  }
+  factor.description_en = en[factor.index]
 })
 
 // write to file
