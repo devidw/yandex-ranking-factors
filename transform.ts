@@ -27,6 +27,8 @@
 // }
 //  and want to turn it into json
 
+import en from "./out/en.json" assert {type: "json"}
+
 // get contents as string
 const file = await Deno.readTextFile("./in/factors_gen.txt")
 
@@ -103,11 +105,11 @@ for (let i = 0; i < lines.length; i++) {
     else if (
       typeof value === "string" &&
       value.startsWith("[") &&
-      value.endsWith("]")
+      (value.endsWith("]") || value.endsWith("],"))
     ) {
-      value = value.substring(1, value.length - 1)
+      value = value.replaceAll(/[\[\]"]+/g, "").trim()
       value = value.split(",")
-      value = value.map((v) => v.trim())
+      value = value.map((v) => v.trim()).filter((v) => v.length > 0)
     }
 
     factors[factors.length - 1][key] = value
@@ -138,6 +140,11 @@ factors.forEach((factor) => {
       factor[prop] = removeQuotes(factor[prop])
     }
   })
+
+  // add description_en from en{index: description}
+  if (factor.index) {
+    factor.description_en = en[factor.index]
+  }
 })
 
 // write to file
