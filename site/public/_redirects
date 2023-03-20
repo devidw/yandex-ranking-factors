@@ -1,0 +1,3 @@
+# Redirect Netlify subdomain to primary domain
+
+# https://yandex-ranking-factors.netlify.app/* https://ya.wolf.gdn/:splat 301!

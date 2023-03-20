@@ -8,4 +8,4 @@ Translations from Russian to English are made using DeepL API, expecting
 
 For the generated results, see `./out`
 
-For an interactive, browsable catalog of all factors, check out https://index.garden/yandex-ranking-factors
+For an interactive, browsable catalog of all factors, check out https://ya.wolf.gdn

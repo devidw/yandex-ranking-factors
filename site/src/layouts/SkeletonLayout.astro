@@ -1,0 +1,64 @@
+---
+import { SEO } from "astro-seo"
+import * as ld from "@/lib/LinkingData"
+import { Legal } from "@devidw/components"
+
+const props = Astro.props
+const propsOrFrontmatter = Astro.props.frontmatter ?? Astro.props
+
+if (props.headings && propsOrFrontmatter.title) {
+  props.headings = [
+    { depth: 1, slug: undefined, text: propsOrFrontmatter.title },
+    ...props.headings,
+  ]
+}
+
+if (!propsOrFrontmatter.jsonld) {
+  propsOrFrontmatter.jsonld = []
+} else if (!Array.isArray(propsOrFrontmatter.jsonld)) {
+  if (typeof propsOrFrontmatter.jsonld === "string") {
+    propsOrFrontmatter.jsonld = [JSON.parse(propsOrFrontmatter.jsonld)]
+  } else {
+    propsOrFrontmatter.jsonld = [propsOrFrontmatter.jsonld]
+  }
+}
+
+if (propsOrFrontmatter.file) {
+  // look for post/ld.json file
+  const maybe = ld.maybeRead(propsOrFrontmatter.file)
+  if (maybe) {
+    propsOrFrontmatter.jsonld.push(maybe)
+  }
+}
+
+// look for `schema.type` frontmatter
+if (propsOrFrontmatter.schema?.type) {
+  propsOrFrontmatter.jsonld.push(ld.generate(propsOrFrontmatter))
+}
+---
+
+<!DOCTYPE html>
+<html lang={propsOrFrontmatter.lang ?? "en"}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/fav.svg" />
+    <SEO
+      title={propsOrFrontmatter.title}
+      description={propsOrFrontmatter.description}
+      noindex={propsOrFrontmatter.noindex}
+      nofollow={propsOrFrontmatter.noindex}
+    />
+    {
+      propsOrFrontmatter.jsonld && (
+        <Fragment set:html={ld.wrap(propsOrFrontmatter.jsonld)} />
+      )
+    }
+  </head>
+  <body>
+    <div>
+      <slot />
+      <Legal />
+    </div>
+  </body>
+</html>

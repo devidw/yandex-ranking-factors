@@ -1,0 +1,51 @@
+---
+import SkeletonLayout from "@/layouts/SkeletonLayout.astro"
+import Detail from "./Detail.svelte"
+import factors from "./factors.json"
+import { format } from "./helpers"
+
+export function getStaticPaths() {
+  return factors.map((factor) => ({
+    params: {
+      name: factor.name,
+    },
+    props: {
+      factor,
+    },
+  }))
+}
+
+const { factor } = Astro.props
+
+function getTitle() {
+  return `${format(factor.name, "name")} • A Yandex Search Ranking Factor`
+}
+
+function getDescription() {
+  return `All details about the leaked ${format(
+    factor.name,
+    "name"
+  )} ranking factor from Yandex Search. Also known as ${factor.name} and ${
+    factor.cppName
+  }.`
+}
+---
+
+<SkeletonLayout
+  title={getTitle()}
+  description={getDescription()}
+  schema={{
+    type: "TechArticle",
+    extra: {
+      dateCreated: "2023-01-30",
+      datePublished: "2023-01-30",
+      dateModified: new Date().toISOString(),
+    },
+  }}
+>
+  <div class="bg-black text-light min-h-screen">
+    <div class="max-w-[90%] md:max-w-xl mx-auto py-12">
+      <Detail {factor} />
+    </div>
+  </div>
+</SkeletonLayout>

@@ -1,0 +1,35 @@
+{
+  "name": "site",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "redeploy": "netlify deploy --prod",
+    "republish": "pnpm run build && pnpm run redeploy"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^1.2.0",
+    "@astrojs/mdx": "^0.11.6",
+    "@astrojs/rss": "^1.2.1",
+    "@astrojs/sitemap": "^1.2.1",
+    "@astrojs/svelte": "^2.1.0",
+    "@devidw/components": "latest",
+    "@iconify-json/heroicons-solid": "^1.1.7",
+    "@unocss/reset": "^0.45.30",
+    "asciidoctor": "^2.2.6",
+    "astro": "latest",
+    "astro-robots-txt": "^0.3.12",
+    "astro-seo": "^0.6.1",
+    "nanostores": "^0.7.4",
+    "netlify-cli": "^12.14.0",
+    "sass": "^1.59.3",
+    "stylus": "^0.59.0",
+    "svelte": "^3.57.0",
+    "unocss": "^0.45.30"
+  }
+}
