@@ -6,6 +6,6 @@ leaked search ranking factors from Yandex from C++ Slice into JSON
 Translations from Russian to English are made using DeepL API, expecting
 `DEEPL_AUTH_KEY` env variable
 
-For the generated results, see `./out`
+For the generated results, see `./data/out`
 
-For an interactive, browsable catalog of all factors, check out https://ya.wolf.gdn
+For an interactive, browsable catalog of all factors, check out https://yandex-ranking-factors.netlify.app
